@@ -1,0 +1,22 @@
+{
+  "name": "cross-origin",
+  "version": "1.0.0",
+  "description": "this is cross-origin test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cross-origin"
+  ],
+  "author": "wudongyue",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "serve-static": "^1.13.2"
+  },
+  "devDependencies": {
+    "socket.io": "^2.0.4"
+  }
+}

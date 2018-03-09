@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>顶级页面</title>
+  <script type="text/javascript">
+    
+  </script>
+</head>
+<body>
+    <iframe id="iframe" src="http://a.dongyuewu.me/iframe-cross/iframe.html"></iframe>
+    <script type="text/javascript">
+        document.domain = 'dongyuewu.me';
+        var user = 'father';
+        var iframe = document.getElementById('iframe')
+        //支持IE
+        if (iframe.attachEvent){
+            iframe.attachEvent("onload", function(){
+                alert('get js data from child ---> ' + iframe.contentWindow.user); 
+            });
+        } else {
+            iframe.onload = function(){
+                alert('get js data from child ---> ' + iframe.contentWindow.user); 
+            };
+        }
+    </script>
+</body>
+</html>

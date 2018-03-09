@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>b页面</title>
+</head>
+<body>
+    <iframe id="iframe" src="http://dongyuewu.me/hash-cross/c.html" style="display:none;"></iframe>
+    <script type="text/javascript">
+        var iframe = document.getElementById('iframe');
+
+        // 监听a.html传来的hash值，再传给c.html
+        window.onhashchange = function () {
+            window.top.src = window.top.src + 'gggg'
+            iframe.src = iframe.src + location.hash+'在b页面被处理过了！';
+        };
+
+        
+    </script>  
+</body>
+</html>

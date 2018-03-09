@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>a页面</title>
+</head>
+<body>
+  <h1>页面a</h1>
+  <iframe id="iframe" src="http://a.dongyuewu.me/hash-cross/b.html" style="display:none;"></iframe>
+  <script type="text/javascript">
+      var iframe = document.getElementById('iframe');
+    
+      function handler() {
+        iframe.src = iframe.src + '#user=admin';
+      }
+      // 向b.html传hash值
+      if (iframe.attachEvent){
+            iframe.attachEvent("onload", handler);
+      } else {
+            iframe.onload = handler;
+      }
+      
+      // 开放给同域c.html的回调方法
+      function onCallback(res) {
+          alert('data from c.html ---> ' + res);
+      }
+  </script>
+</body>
+</html>

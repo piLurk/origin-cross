@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>name -- a页面</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+    //代理函数
+    var proxy = function(url, callback) {
+      var state = 0;
+      var iframe = document.createElement('iframe');
+      iframe.src = url;
+      iframe.style.display = 'none';
+      // onload事件会触发2次，第1次加载跨域页，并留存数据于window.name,第二次加载同源页面
+      iframe.onload = function() {
+          if (state === 1) {
+              // 第2次onload(同域proxy页)成功后，读取同域window.name中数据
+              callback(iframe.contentWindow.name);
+              destoryFrame();
+
+          } else if (state === 0) {
+              // 第1次onload(跨域页)成功后，切换到同域代理页面
+              iframe.contentWindow.location = 'http://dongyuewu.me/name-cross/c.html';
+              state = 1;
+          }
+      };
+
+      document.body.appendChild(iframe);
+
+      // 获取数据以后销毁这个iframe，释放内存；这也保证了安全（不被其他域frame js访问）
+      function destoryFrame() {
+          iframe.contentWindow.document.write('');
+          iframe.contentWindow.close();
+          document.body.removeChild(iframe);
+      }
+  };
+
+    proxy('http://a.dongyuewu.me/name-cross/b.html',function(name){
+      alert(name)
+    })
+  </script>
+</body>
+</html>

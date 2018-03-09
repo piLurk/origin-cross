@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>postMessage --- a页面</title>
+</head>
+<body>
+  <iframe id="iframe" src="http://a.dongyuewu.me/postMessage-cross/b.html"></iframe>
+  <script type="text/javascript">
+    var data = {
+      name:'向b页面发送的数据'
+    }
+    var iframe = document.getElementById('iframe')
+
+    if (iframe.attachEvent){
+      iframe.attachEvent("onload", handler);
+    } else {
+      iframe.onload = handler;
+    }
+    function handler() {
+      //一些浏览器只支持传递字符串，这里最好序列化后传递
+      iframe.contentWindow.postMessage(JSON.stringify(data), 'http://a.dongyuewu.me')
+    }
+    
+  </script>
+</body>
+</html>

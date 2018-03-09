@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>webSocket 页面</title>
+  <script type="text/javascript" src="https://cdn.bootcss.com/socket.io/2.0.4/socket.io.js"></script>
+</head>
+<body>
+  <input id="socket_inp" type="text">
+  <script type="text/javascript">
+    var socket = io('http://a.dongyuewu.me');
+
+    socket.on('connect', function() {
+        socket.on('message', function(msg) {
+            console.log('服务端发来了一条信息: ---> ' + msg); 
+        });
+        socket.on('disconnect', function() { 
+            console.log('连接断开了'); 
+        });
+    });
+
+    document.getElementById('socket_inp').onblur = function() {
+        socket.send(this.value);
+    };
+  </script>
+</body>
+</html>
